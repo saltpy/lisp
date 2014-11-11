@@ -15,11 +15,16 @@ int is_nil(pair * p) {
 }
 
 
-pair * read(FILE * in) {
+pair * nil() {
     pair * p = malloc(sizeof(pair));
 
     p->head = NULL;
     p->tail = NULL;
 
     return p;
+}
+
+
+pair * read(FILE * in) {
+    return nil();
 }
