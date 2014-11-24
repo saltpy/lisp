@@ -36,3 +36,10 @@ int nil(pair * p) {
 pair * read(FILE * in) {
     return cons(NULL, NULL);
 }
+
+
+void print(FILE * out, pair * root) {
+    char sexp[] = "()";
+    fwrite(sexp, 1, sizeof(sexp), out);
+    fclose(out);
+}
