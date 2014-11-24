@@ -38,8 +38,11 @@ pair * read(FILE * in) {
 }
 
 
-void print(FILE * out, pair * root) {
-    char sexp[] = "()";
-    fwrite(sexp, 1, sizeof(sexp), out);
-    fclose(out);
+pair * eval(pair * sexp, pair * local, pair * global) {
+    return sexp;
+}
+
+
+char * repr(pair * sexp) {
+    return "()";
 }

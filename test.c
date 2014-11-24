@@ -19,7 +19,7 @@ int _assert_char_arrays_equal(char expected[], char actual[]) {
 }
 
 
-int parens_should_parse_to_nil() {
+int parens_should_read_to_nil() {
     char sexp[] = "()";
     FILE * f = tmpfile();
     fwrite(sexp, 1, sizeof(sexp), f);
@@ -39,24 +39,18 @@ int cons_of_null_and_null_should_equal_nil() {
 }
 
 
-int print_of_nil_should_be_empty_parens() {
-    char actual[2];
-    char expected[] = "()";
-    FILE * f = tmpfile();
-    
-    print(f, cons(NULL, NULL));
-    fgets(actual, 100, f);
-    _assert_char_arrays_equal(expected, actual);
-
-    fclose(f);
+int repr_of_nil_should_be_empty_parens() {
+    char expected[2] = "()";
+    _assert_char_arrays_equal(expected, repr(cons(NULL, NULL)));
 
     return 0;
 }
 
 
 int suite() {
-    _verify(parens_should_parse_to_nil);
+    _verify(parens_should_read_to_nil);
     _verify(cons_of_null_and_null_should_equal_nil);
+    _verify(repr_of_nil_should_be_empty_parens);
     return 0;
 }
 
