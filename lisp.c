@@ -8,23 +8,31 @@ typedef struct {
 } pair;
 
 
-int is_nil(pair * p) {
-    if (p->head || p->tail) return 1;
+pair * NIL;
 
-    return 0;
+
+pair * cons(pair * h, pair * t) {
+    return NIL; 
 }
 
 
-pair * nil() {
-    pair * p = malloc(sizeof(pair));
+pair * head(pair * p) {
+    if (nil(p) == 0) return p;
+    return p->head;
+}
 
-    p->head = NULL;
-    p->tail = NULL;
 
-    return p;
+pair * tail(pair * p) {
+    if (nil(p) == 0) return p;
+    return p->tail;
+}
+
+
+int nil(pair * p) {
+    return (p == NIL) ? 0 : 1;
 }
 
 
 pair * read(FILE * in) {
-    return nil();
+    return cons(NULL, NULL);
 }

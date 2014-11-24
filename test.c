@@ -14,7 +14,7 @@ int parens_should_parse_to_nil() {
     FILE * f = tmpfile();
     fwrite(sexp, 1, sizeof(sexp), f);
 
-    _assert(is_nil(read(f)) == 0);
+    _assert(nil(read(f)) == 0);
 
     fclose(f);
                     
@@ -22,8 +22,16 @@ int parens_should_parse_to_nil() {
 }
 
 
+int cons_of_null_and_null_should_equal_nil() {
+    _assert(nil(cons(NULL, NULL)) == 0);
+
+    return 0;
+}
+
+
 int suite() {
     _verify(parens_should_parse_to_nil);
+    _verify(cons_of_null_and_null_should_equal_nil);
     return 0;
 }
 
