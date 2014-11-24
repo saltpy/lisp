@@ -9,5 +9,6 @@ test: clean
 	./test
 
 clean:
+	rm -rf *.o
 	rm -rf test
 	rm -rf lisp
