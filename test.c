@@ -57,11 +57,28 @@ int repr_of_atom_a_should_be_a() {
 }
 
 
+int cons_a_null_should_be_pair_a_nil() {
+    object * actual = cons(atom("a"), NULL);
+    
+    _assert(actual->type == PAIR);
+
+    object * acar = (object *)actual->car;
+    _assert(acar->type == ATOM);
+
+    object * acdr = (object *)actual->cdr;
+    _assert_char_arrays_equal("a", repr(acdr->name));
+    _assert(acdr->type == NIL);
+
+    return 0;
+}
+
+
 int suite() {
     _verify(parens_should_read_to_nil);
     _verify(cons_of_null_and_null_should_equal_nil);
     _verify(repr_of_nil_should_be_empty_parens);
     _verify(repr_of_atom_a_should_be_a);
+    _verify(cons_a_null_should_be_pair_a_nil);
     return 0;
 }
 

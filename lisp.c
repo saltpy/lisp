@@ -23,7 +23,15 @@ object * atom(char * v) {
 
 object * cons(object * h, object * t) {
     object * o = malloc(sizeof(object));
-    o->type = NIL;
+    if (! h && ! t) {
+        o->type = NIL;
+    } else {
+        o->type = PAIR;
+        o->car = h;
+        object * nt = malloc(sizeof(object));
+        nt->type = NIL;
+        o->cdr = nt;
+    }
     return o; 
 }
 
