@@ -1,3 +1,4 @@
 *.swp
+*.cd
 test
 lisp
