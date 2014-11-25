@@ -49,10 +49,19 @@ int repr_of_nil_should_be_empty_parens() {
 }
 
 
+int repr_of_atom_a_should_be_a() {
+    char expected[] = "a"; 
+    _assert_char_arrays_equal(expected, repr(atom("a")));
+    
+    return 0;
+}
+
+
 int suite() {
     _verify(parens_should_read_to_nil);
     _verify(cons_of_null_and_null_should_equal_nil);
     _verify(repr_of_nil_should_be_empty_parens);
+    _verify(repr_of_atom_a_should_be_a);
     return 0;
 }
 
