@@ -23,8 +23,9 @@ int parens_should_read_to_nil() {
     char sexp[] = "()";
     FILE * f = tmpfile();
     fwrite(sexp, 1, sizeof(sexp), f);
+    object * actual = read(f);
 
-    _assert(nil(read(f)) == 0);
+    _assert(actual->type == NIL);
 
     fclose(f);
                     
@@ -33,7 +34,8 @@ int parens_should_read_to_nil() {
 
 
 int cons_of_null_and_null_should_equal_nil() {
-    _assert(nil(cons(NULL, NULL)) == 0);
+    object * actual = cons(NULL, NULL);
+    _assert(actual->type == NIL);
 
     return 0;
 }
@@ -53,6 +55,7 @@ int suite() {
     _verify(repr_of_nil_should_be_empty_parens);
     return 0;
 }
+
 
 int main(int argc, char **argv) {
     int result = suite();
